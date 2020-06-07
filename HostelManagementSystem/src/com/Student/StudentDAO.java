@@ -1,0 +1,416 @@
+package com.Student;
+
+
+import com.Administration.DBConnection;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Iterator;
+
+public class StudentDAO 
+{
+	
+	/**
+	 * this method adds students data to the database
+	 * @param student
+	 * @return successFlag
+	 */
+	public static int addStudent(Student student)
+	{
+		Connection conn = null;
+		Statement stmt = null;
+		int successFlag = 0;
+		
+		try
+		{
+			conn = (Connection)DBConnection.getConnection();
+			if(conn != null)
+			{
+				stmt = conn.createStatement();
+				String sql = "INSERT INTO Students (appliedDate,firstName,middleName,lastName,dob,gender,uid,email,contact,parentContact,photo,sign,currentAddress,permanentAddress, guardianName,guardianOccupation,guardianAddress,guardianEmail,guardianContact,deptName,qualification,courseName,courseDuration,courseYear,eligibilityNo,admissionDate,admissionYear,isRoomAllotted,hostelNo,roomNo) VALUES ('"+student.getAppliedDate()+"','"+student.getFirstName()+"','"+student.getMiddleName()+"','"+student.getLastName()+"','"+student.getDob()+"','"+student.getGender()+"','"+student.getUid()+"','"+student.getEmail()+"','"+student.getContact()+"','"+student.getParentContact()+"','"+student.getPhoto()+"','"+student.getSign()+"','"+student.getCurrentAddress()+"','"+student.getPermanentAddress()+"','"+student.getGuardianName()+"','"+student.getGuardianOccupation()+"','"+student.getGuardianAddress()+"','"+student.getGuardianEmail()+"','"+student.getGuardianContact()+"','"+student.getDeptName()+"','"+student.getQualification()+"','"+student.getCourseName()+"','"+student.getCourseDuration()+"','"+student.getCourseYear()+"','"+student.getEligibilityNo()+"','"+student.getAdmissionDate()+"','"+student.getAdmissionYear()+"','"+student.getIsRoomAllotted()+"','"+student.getHostelNo()+"','"+student.getRoomNo()+"')";
+				System.out.println("Query : "+sql);
+				successFlag = stmt.executeUpdate(sql);
+				System.out.println("Student added with successFlag = "+successFlag);
+			}	
+			else
+				System.out.println("Database connection is NULL");
+		}
+		catch(Exception e)
+		{
+			//Handle Exception
+			System.out.println("An Exception Occured while Adding Student");
+			System.out.println(e.getMessage());		
+		}
+		finally 
+		{
+			try
+			{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		return successFlag;
+	}
+	
+	/**
+	 * this method returns the all students details from database
+	 * @param userId
+	 * @return students
+	 */
+	public static Student getStudentDetails(String userId) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		Student student=new Student();
+		int count =0;
+		try
+		{
+			conn = (Connection)DBConnection.getConnection();
+			if(conn != null)
+			{
+				stmt = conn.createStatement();
+				String sql = "select * from Students where email ='"+userId+"'and ( deleteStatus='N' or deleteStatus is NULL )";
+				System.out.println("Query : "+sql);
+				rs =stmt.executeQuery(sql);
+					if(rs.next()==true){
+							student.setAppliedDate(rs.getString(2));
+							student.setFirstName(rs.getString(3));
+							student.setMiddleName(rs.getString(4));
+							student.setLastName(rs.getString(5));
+							student.setDob(rs.getString(6));
+							student.setGender(rs.getString(7));
+							student.setUid(rs.getString(8));
+							student.setEmail(rs.getString(9));
+							student.setContact(rs.getString(10));
+							student.setParentContact(rs.getString(11));
+							student.setPhoto(rs.getString(12));
+							student.setSign(rs.getString(13));
+							student.setCurrentAddress(rs.getString(14));
+							student.setPermanentAddress(rs.getString(15));
+							student.setGuardianName(rs.getString(16));
+							student.setGuardianOccupation(rs.getString(17));
+							student.setGuardianAddress(rs.getString(18));
+							student.setGuardianEmail(rs.getString(19));
+							student.setGuardianContact(rs.getString(20));
+							student.setDeptName(rs.getString(21));
+							student.setQualification(rs.getString(22));
+							student.setCourseName(rs.getString(23));
+							student.setCourseDuration(rs.getString(24));
+							student.setCourseYear(rs.getString(25));
+							student.setEligibilityNo(rs.getString(26));
+							student.setAdmissionDate(rs.getString(27));
+							student.setAdmissionYear(rs.getString(28));
+							student.setIsRoomAllotted(rs.getString(29));
+							student.setHostelNo(rs.getString(30));
+							student.setRoomNo(rs.getString(31));
+							count=count+1;
+					}
+				System.out.println("Student Found with name = "+student.getFirstName()+ "  with count ="+count);
+			}	
+			else
+				System.out.println("Database connection is NULL");
+		}
+		catch(Exception e)
+		{
+			//Handle Exception
+			System.out.println("An Exception Occured while Adding Student");
+			System.out.println(e.getMessage());		
+		}
+		finally 
+		{
+			try
+			{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		return student;
+	}
+	/*public static void main(String args[]) {
+		StudentDAO studentDao=new StudentDAO();
+		Student student = new Student();
+		student =studentDao.getStudentDetails("ankita@gmail.com");
+		System.out.println("student "+student.getFirstName());
+	}*/
+	
+	/**
+	 * this method adds latePass to the latePass
+	 * @param latepass
+	 * @return successFlag
+	 */
+	public static int addLatePass(LatePass latepass) {
+		Connection conn = null;
+		Statement stmt = null;
+		int successFlag=0;
+		
+		try
+		{
+			conn = (Connection)DBConnection.getConnection();
+			if(conn != null)
+			{
+				stmt = conn.createStatement();
+				String sql = "INSERT INTO latepass(appliedDate,userId,name,department,rollNo,roomNo,hostelNo,leaveTime,address,contact,guardianContact)VALUES('"+latepass.getAppliedDate()+"','"+latepass.getUserId()+"','"+latepass.getName()+"','"+latepass.getDepartment()+"','"+latepass.getRollNo()+"','"+latepass.getRoomNo()+"','"+latepass.getHostelNo()+"','"+latepass.getLeaveTime()+"','"+latepass.getAddress()+"','"+latepass.getContact()+"','"+latepass.getGuardianConatct()+"')";
+				System.out.println("Query : "+sql);
+				successFlag = stmt.executeUpdate(sql);
+				System.out.println("LatePass added with successFlag = "+successFlag);
+			}	
+			else {
+				System.out.println("Database connection is NULL");
+		   }
+		}
+		catch(Exception e)
+		{
+				//Handle Exception
+			System.out.println("An Exception Occured while Adding latepass");
+			System.out.println(e.getMessage());		
+		}
+		finally 
+		{
+			try
+			{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		return successFlag;
+	}
+	
+	/**
+	 * this method return latepassId from latePass
+	 * @param latepass
+	 * @return lateId
+	 */
+	public static int getLatePassId(LatePass latepass) {
+		Connection conn = null;
+		Statement stmt = null;
+	    int  lateId=0;
+		ResultSet rs = null;
+		
+		try
+		{
+			conn = (Connection)DBConnection.getConnection();
+			if(conn != null)
+			{
+				stmt = conn.createStatement();
+				String sql = "select lateId from latePass where userId='"+latepass.getUserId()+"' and appliedDate ='"+latepass.getAppliedDate()+"'";
+				System.out.println("Query : "+sql);
+				rs=stmt.executeQuery(sql);
+				if(rs.next()==true){
+					lateId=rs.getInt(lateId);
+			    }
+				System.out.println("LatePass found with lateId = "+lateId);
+			}	
+			else {
+				System.out.println("Database connection is NULL");
+		   }
+		}
+		catch(Exception e)
+		{
+				//Handle Exception
+			System.out.println("An Exception Occured while getting lateId");
+			System.out.println(e.getMessage());		
+		}
+		finally 
+		{
+			try
+			{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		return lateId;
+	}
+	
+	/**
+	 * adds outpass to outpass
+	 * @param outpass
+	 * @return
+	 */
+	public static int addOutPass(OutPass outPass) {
+		Connection conn = null;
+		Statement stmt = null;
+		int successFlag=0;
+		
+		try
+		{
+			conn = (Connection)DBConnection.getConnection();
+			if(conn != null)
+			{
+				stmt = conn.createStatement();
+				String sql = "INSERT INTO outpass(appliedDate,userId,class,department,rollNo,roomNo,hostelNo,leaveDate,reportDate,address,contact,guardianContact)VALUES('"+outPass.getAppliedDate()+"','"+outPass.getUserId()+"','"+outPass.getName()+"','"+outPass.getDepartment()+"','"+outPass.getRollNo()+"','"+outPass.getRoomNo()+"','"+outPass.getHostelNo()+"','"+outPass.getLeaveDate()+"','"+outPass.getReportDate()+"','"+outPass.getAddress()+"','"+outPass.getContact()+"','"+outPass.getGuardianConatct()+"')";
+				System.out.println("Query : "+sql);
+				successFlag = stmt.executeUpdate(sql);
+				System.out.println("OutPass added with successFlag = "+successFlag);
+			}	
+			else {
+				System.out.println("Database connection is NULL");
+		   }
+		}
+		catch(Exception e)
+		{
+				//Handle Exception
+			System.out.println("An Exception Occured while Adding outpass");
+			System.out.println(e.getMessage());		
+		}
+		finally 
+		{
+			try
+			{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		return successFlag;
+	}
+	
+	/**
+	 *  returns outId from outPass
+	 * @param latepass
+	 * @return
+	 */
+	
+	public static int getOutPassId(OutPass outPass) {
+		Connection conn = null;
+		Statement stmt = null;
+	    int  outId=0;
+		ResultSet rs = null;
+		
+		try
+		{
+			conn = (Connection)DBConnection.getConnection();
+			if(conn != null)
+			{
+				stmt = conn.createStatement();
+				String sql = "select outId from outPass where userId='"+outPass.getUserId()+"' and appliedDate ='"+outPass.getAppliedDate()+"'";
+				System.out.println("Query : "+sql);
+				rs=stmt.executeQuery(sql);
+				if(rs.next()==true){
+					outId=rs.getInt(outId);
+			    }
+				System.out.println("LatePass found with lateId = "+outId);
+			}	
+			else {
+				System.out.println("Database connection is NULL");
+		   }
+		}
+		catch(Exception e)
+		{
+				//Handle Exception
+			System.out.println("An Exception Occured while getting outId");
+			System.out.println(e.getMessage());		
+		}
+		finally 
+		{
+			try
+			{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		return outId;
+	}
+	
+	/**
+	 * This Method Retrives Student from Students Table
+	 * @param studId
+	 * @return Student
+	 */
+	public static Student getStudent(int studId)
+	{
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		Student student=new Student();
+		try
+		{
+			conn = (Connection)DBConnection.getConnection();
+			if(conn != null)
+			{
+				stmt = conn.createStatement();
+				String sql = "select * from Students where studId="+studId;
+				System.out.println("Query : "+sql);
+				rs =stmt.executeQuery(sql);
+				if(rs.next())
+				{
+					student.setStudId(rs.getInt(1));
+					student.setAppliedDate(rs.getString(2));
+					student.setFirstName(rs.getString(3));
+					student.setMiddleName(rs.getString(4));
+					student.setLastName(rs.getString(5));
+					student.setDob(rs.getString(6));
+					student.setGender(rs.getString(7));
+					student.setUid(rs.getString(8));
+					student.setEmail(rs.getString(9));
+					student.setContact(rs.getString(10));
+					student.setParentContact(rs.getString(11));
+					student.setPhoto(rs.getString(12));
+					student.setSign(rs.getString(13));
+					student.setCurrentAddress(rs.getString(14));
+					student.setPermanentAddress(rs.getString(15));
+					student.setGuardianName(rs.getString(16));
+					student.setGuardianOccupation(rs.getString(17));
+					student.setGuardianAddress(rs.getString(18));
+					student.setGuardianEmail(rs.getString(19));
+					student.setGuardianContact(rs.getString(20));
+					student.setDeptName(rs.getString(21));
+					student.setQualification(rs.getString(22));
+					student.setCourseName(rs.getString(23));
+					student.setCourseDuration(rs.getString(24));
+					student.setCourseYear(rs.getString(25));
+					student.setEligibilityNo(rs.getString(26));
+					student.setAdmissionDate(rs.getString(27));
+					student.setAdmissionYear(rs.getString(28));
+					student.setIsRoomAllotted(rs.getString(29));
+					student.setHostelNo(rs.getString(30));
+					student.setRoomNo(rs.getString(31));
+				}
+				System.out.println(student.getPhoto());
+			}	
+			else
+				System.out.println("Database connection is NULL");
+		}
+		catch(Exception e)
+		{
+			//Handle Exception
+			System.out.println("An Exception Occured while Getting Student");
+			System.out.println(e.getMessage());		
+		}
+		finally 
+		{
+			try
+			{
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		return student;
+	}
+}

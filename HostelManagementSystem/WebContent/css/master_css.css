@@ -1,0 +1,95 @@
+
+.table_style {
+background-color: #E7FFFF ;
+border-collapse: collapse;
+border: 0;
+}
+
+.th_style {
+background-color: #616D7E ;
+font-family:"calibri", Times, serif;
+text-align: center;
+font-size: 06px;
+font-variant: normal;
+color: white;
+font-weight: bold;
+}
+
+.alt_tr {
+background-color: #FDEEF4 ;
+font-family:"calibri", Times, serif;
+font-size: 16px;
+color: #2B3856;
+vertical-align: middle;
+}
+
+.tr {
+font-family:"calibri", Times, serif;
+font-size: 16px;
+color: #2B3856;
+vertical-align: middle;
+}
+
+
+a:link {
+COLOR: #7E3117;
+}
+
+a:visited {
+color: #7E3117;
+}
+
+a:hover {
+color: #F87217;
+}
+
+a:active {
+color: #F87217;
+
+}
+
+.table_border{
+border-color: #87AFC7;
+border-style: solid;
+background-color: #E7FFFF ;
+border-collapse: collapse;
+border: solid 1;
+}
+
+.style8 {
+	color:#CC6633;
+	font-style:italic;
+	font-family:"calibri", Times, serif;
+}
+
+.rows_odd
+{
+	background-color:#E6FFAA;
+	font-family:"calibri", Times, serif;
+	color: #2B3856;
+	vertical-align: middle;
+}
+
+.rows_even
+{
+	background-color:#FFAEDD;
+	font-family:"calibri", Times, serif;
+	color: #2B3856;
+	vertical-align: middle;
+}
+
+nav ul ul
+{
+	display:none;
+}
+
+nav ul li: hover > ul
+{
+	display:block;
+}
+
+.labelFont
+{
+font-family:"calibri", Times, serif;
+font-size: 16px;
+}
