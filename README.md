@@ -1,5 +1,5 @@
 # HostelManagementSystem
-This project is Collaborated with Suraj Kale and Ankita Waghmode under the guidance of 
+This project is did under the guidance of 
 Prof Nitin Patil(Department of Computer Science, Savitribai Phule Pune University).
 This Project is dynamic web project and written in JSP.
 This project is analogous to Management of Hostels in Savitribai Phule Pune University, Pune.
@@ -13,7 +13,7 @@ Student(Need to login as Student):
   Late-Pass Facility,Out-Pass Facility,Library facility,Notifications or News and Announcements ,Manage Profile 
 
 Security(Guards/Warden)(Need to login as Security):
-  Manage vehicle entries,reports
+  Manage vehicle entries,reports ,
   Manage Notifications or News and Announcements
 
 Rector(Need to login as Rector):
