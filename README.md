@@ -29,5 +29,5 @@ Manage All Hostels,Manage All Rectors,And all other above accesses
 3.Mysql-server 5.7.30 (or 5.7+)
 (Browser should be updated,if not then not parsed HTML5 tags and attributes)
 
-# Video Explanation of Project
+# Video Explanation:
 https://youtu.be/y9-eL6O7Dfk
