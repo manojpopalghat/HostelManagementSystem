@@ -1,4 +1,6 @@
-# HostelManagementSystem
+# Hostel Management System
+
+## Introduction
 This project is did under the guidance of 
 Prof Nitin Patil(Department of Computer Science, Savitribai Phule Pune University).
 This Project is dynamic web project and written in JSP.
