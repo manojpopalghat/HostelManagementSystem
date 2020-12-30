@@ -23,11 +23,11 @@ Admin(Need to login as Admin):
 Manage hostels public information,Manage Chief Rector,Manage Notifications or News and Announcements,
 Manage All Hostels,Manage All Rectors,And all other above accesses
 
-# Software Requrement for this project
+## Software Requrement for this project
 1.JDK8
 2.Apache Tomcat 8.5 Server (or 8.5+)
 3.Mysql-server 5.7.30 (or 5.7+)
 (Browser should be updated,if not then not parsed HTML5 tags and attributes)
 
-# Video Explanation:
+## Video Explanation:
 https://youtu.be/y9-eL6O7Dfk
